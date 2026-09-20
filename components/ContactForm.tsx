@@ -5,13 +5,12 @@ import { OFFERS, an1Pour, fmtMAD, type OfferId } from "@/data/offers";
 
 const DEST = "officialkeninc@gmail.com";
 
-export function ContactForm({ offer, setOffer, eleves }: { offer: OfferId; setOffer: (o: OfferId) => void; eleves: number }) {
+export function ContactForm({ offer, setOffer, eleves, setEleves }: { offer: OfferId; setOffer: (o: OfferId) => void; eleves: number; setEleves: (n: number) => void }) {
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState(false);
   const [ecole, setEcole] = useState("");
   const [email, setEmail] = useState("");
-  const [effectif, setEffectif] = useState("");
 
   const selected = OFFERS.find((o) => o.id === offer)!;
   const estimation = selected.surDevis ? "Sur devis" : fmtMAD(an1Pour(selected, eleves));
@@ -19,7 +18,7 @@ export function ContactForm({ offer, setOffer, eleves }: { offer: OfferId; setOf
   const mailto = `mailto:${DEST}?subject=${encodeURIComponent(
     `Devis SchoolOS ${selected.id} — ${ecole || "Nouvelle demande"}`
   )}&body=${encodeURIComponent(
-    `École: ${ecole}\nEmail: ${email}\nEffectif: ${effectif || eleves}\nOffre estimée: ${selected.id} — ${selected.nom}\nEstimation Année 1: ${estimation}`
+    `École: ${ecole}\nEmail: ${email}\nEffectif: ${eleves}\nOffre estimée: ${selected.id} — ${selected.nom}\nEstimation Année 1: ${estimation}`
   )}`;
 
   const submit = async (e: React.FormEvent) => {
@@ -36,7 +35,7 @@ export function ContactForm({ offer, setOffer, eleves }: { offer: OfferId; setOf
           _captcha: "false",
           École: ecole,
           Email: email,
-          "Effectif déclaré": effectif || String(eleves),
+          Effectif: String(eleves),
           "Offre estimée": `${selected.id} — ${selected.nom}`,
           "Estimation Année 1": estimation,
         }),
@@ -99,7 +98,7 @@ export function ContactForm({ offer, setOffer, eleves }: { offer: OfferId; setOf
             </label>
             <label className="grid gap-1 text-[14px] font-semibold">
               Effectif approximatif
-              <input type="number" name="effectif" min={20} max={5000} value={effectif} onChange={(e) => setEffectif(e.target.value)} className="font-normal border border-hairline rounded-util px-4 min-h-[44px] bg-transparent" placeholder={String(eleves)} />
+              <input type="number" name="effectif" min={0} max={5000} value={eleves} onChange={(e) => setEleves(Math.max(0, Math.min(5000, Number(e.target.value) || 0)))} className="font-normal border border-hairline rounded-util px-4 min-h-[44px] bg-transparent" placeholder="200" />
             </label>
             <button disabled={sending} className="btn-primary bg-action text-white rounded-full px-5 py-2.5 min-h-[44px] inline-flex items-center justify-center gap-2 disabled:opacity-60">
               {sending && <ThinkingOrb state="connecting" size={20} aria-label="Envoi en cours…" />}

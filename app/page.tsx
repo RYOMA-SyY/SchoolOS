@@ -35,7 +35,7 @@ export default function Home() {
         <Calculator offer={offer} setOffer={setOffer} eleves={eleves} setEleves={setEleves} />
         <Audience />
         <Steps />
-        <ContactForm offer={offer} setOffer={setOffer} eleves={eleves} />
+        <ContactForm offer={offer} setOffer={setOffer} eleves={eleves} setEleves={setEleves} />
       </main>
       <Footer />
       <DevisBar offer={offer} eleves={eleves} />
