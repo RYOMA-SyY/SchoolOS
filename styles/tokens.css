@@ -1,0 +1,179 @@
+/* SchoolOS semantic tokens — rebuilt from Apple's official sources:
+ * - Apple Design Resources (developer.apple.com/design/resources/):
+ *   SF Pro / SF Arabic stacks (licensed system fonts — never embedded, resolved
+ *   natively on Apple devices, Inter fallback elsewhere), SF Symbols 7000+ mapped
+ *   to Lucide (weight-matched, RTL-aware), iOS 27 + macOS 27 UI-kit spacing.
+ * - HIG `color.md › System colors`: semantic colors by role (label / grouped
+ *   backgrounds / separator), never hard-coded, light + dark + contrast variants.
+ * - HIG `dark-mode.md › Best practices`: no app-specific toggle — follows
+ *   prefers-color-scheme; base vs elevated backgrounds for depth.
+ * - HIG `typography.md › Using system fonts`: SF family incl. SF Arabic;
+ *   iOS default 17pt, minimum 11pt; avoid light weights for small text.
+ * - Contrast lockup verified via randoma11y (Threshold 4.5 / WCAG 2.1) +
+ *   scripts/check-contrast.mjs (light + dark pairs).
+ *
+ * Implementation: Tailwind colors reference these rgb triplets with
+ * <alpha-value>, so opacity modifiers (text-ink/70…) keep working in both
+ * appearances with zero component edits. This file is unlayered, so it wins
+ * over Tailwind's @layer utilities (e.g. the .bg-white card bridge below).
+ */
+:root {
+  color-scheme: light dark;
+
+  /* --- Light appearance (default) --- */
+  --rgb-bg: 255 255 255; /* systemBackground */
+  --rgb-grouped: 245 245 247; /* marketing parchment (Apple.com #f5f5f7) */
+  --rgb-pearl: 250 250 252;
+  --rgb-card: 255 255 255; /* secondarySystemGroupedBackground */
+  --rgb-tile-1: 39 39 41; /* dark marketing tile */
+  --rgb-tile-2: 42 42 44;
+  --rgb-tile-3: 37 37 39;
+  --rgb-black: 0 0 0;
+  --rgb-label: 29 29 31; /* 16.83:1 on white */
+  --rgb-label-strong: 51 51 51; /* 12.63:1 */
+  --rgb-label-2: 110 110 115; /* secondary label fix — 5.07:1 (old gray failed 4.29:1) */
+  --rgb-label-2-dark: 204 204 204; /* secondary copy on dark tiles — 9.28:1 on tile-1 */
+  --rgb-action: 0 102 204; /* app accent (brand) — 5.57:1 on white; single accent */
+  --rgb-focus: 0 113 227; /* keyboard focus ring — 4.70:1 */
+  --rgb-sky: 41 151 255; /* links on dark tiles only — 4.94:1 on tile-1 */
+  --rgb-separator: 224 224 224;
+  --rgb-chip: 210 210 215;
+
+  /* iOS status palette (fills/icons/badges — never body text without check) */
+  --rgb-success: 52 199 89;
+  --rgb-warning: 255 149 0;
+  --rgb-danger: 255 59 48;
+  --rgb-purple: 175 82 222; /* AI / premium */
+  --rgb-teal: 90 200 250;
+  --rgb-pink: 255 45 85;
+
+  --img-shadow: 3px 5px 30px rgba(0, 0, 0, 0.22); /* the ONLY shadow — product imagery */
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Arabic",
+    var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Arabic",
+    var(--font-inter), "Inter", system-ui, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* --- Dark appearance: base vs elevated (dark-mode.md › Mobile) --- */
+    --rgb-bg: 0 0 0; /* systemBackground — true black */
+    --rgb-grouped: 28 28 30; /* secondarySystemGroupedBackground */
+    --rgb-pearl: 18 18 20; /* sits between black sections */
+    --rgb-card: 28 28 30; /* elevated cards on black */
+    --rgb-tile-1: 44 44 46; /* tertiarySystemGroupedBackground — elevated */
+    --rgb-tile-2: 28 28 30;
+    --rgb-tile-3: 28 28 30;
+    --rgb-label: 255 255 255; /* 21:1 on black */
+    --rgb-label-strong: 235 235 245; /* ~15:1 */
+    --rgb-label-2: 174 174 184; /* dark secondary label — ~8:1 on black */
+    --rgb-label-2-dark: 161 161 166; /* ~7:1 on tile */
+    --rgb-action: 0 113 227; /* dimmer than iOS #0A84FF so white text stays 4.7:1 */
+    --rgb-focus: 41 151 255; /* ring on dark — ~7:1 on black */
+    --rgb-sky: 41 151 255;
+    --rgb-separator: 56 56 58; /* dark separator */
+    --rgb-chip: 72 72 74;
+
+    --rgb-success: 48 209 88;
+    --rgb-warning: 255 159 10;
+    --rgb-danger: 255 69 58;
+    --rgb-purple: 191 90 242;
+    --rgb-teal: 100 210 255;
+    --rgb-pink: 255 55 95;
+  }
+
+  /* NOTE: dark card/link adaptation is done with explicit Tailwind `dark:`
+   * utilities on components (dark:bg-[#1C1C1E], dark:text-sky) — deterministic
+   * inside the utilities layer. No global .bg-white/.text-action overrides here:
+   * they lose to layered utilities in some browsers. Per dark-mode.md, white
+   * surfaces become elevated #1C1C1E and links use sky. */
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-text);
+  background: rgb(var(--rgb-bg));
+  color: rgb(var(--rgb-label));
+  font-size: 17px; /* iOS default — typography.md › Ensuring legibility */
+  line-height: 1.47;
+  letter-spacing: -0.374px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Inter fallback tightening (vs SF Pro tracking) */
+@supports (font-family: "Inter") {
+  body {
+    letter-spacing: -0.01em;
+  }
+}
+
+h1,
+h2 {
+  text-wrap: balance; /* display headlines never strand a word */
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "cv05" 1;
+}
+
+::selection {
+  background: rgb(var(--rgb-action) / 0.25);
+}
+
+::placeholder {
+  color: rgb(var(--rgb-label-2)); /* iOS placeholder in tertiary tone */
+  opacity: 1;
+}
+
+input[type="range"] {
+  accent-color: rgb(var(--rgb-action)); /* adapts light/dark automatically */
+}
+
+.btn-primary {
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+.btn-primary:active {
+  transform: scale(0.95); /* system-wide press micro-interaction */
+}
+:focus-visible {
+  outline: 2px solid rgb(var(--rgb-focus));
+  outline-offset: 2px;
+}
+
+.frosted {
+  background: rgb(var(--rgb-grouped) / 0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+/* Display scale clamps for phones (Apple store breakpoints 640 / 419) */
+@media (max-width: 640px) {
+  .text-hero {
+    font-size: 34px;
+    line-height: 1.1;
+  }
+  .text-dlg {
+    font-size: 28px;
+  }
+}
+@media (max-width: 419px) {
+  .text-hero {
+    font-size: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
