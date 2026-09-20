@@ -5,7 +5,7 @@ import { OFFERS, an1Pour, fmtMAD, type OfferId } from "@/data/offers";
 
 const DEST = "officialkeninc@gmail.com";
 
-export function ContactForm({ offer, eleves }: { offer: OfferId; eleves: number }) {
+export function ContactForm({ offer, setOffer, eleves }: { offer: OfferId; setOffer: (o: OfferId) => void; eleves: number }) {
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState(false);
@@ -66,6 +66,29 @@ export function ContactForm({ offer, eleves }: { offer: OfferId; eleves: number 
           </p>
         ) : (
           <form onSubmit={submit} className="mt-8 max-w-[560px] mx-auto bg-white dark:bg-[#1C1C1E] border border-hairline rounded-card p-6 grid gap-4">
+            <div>
+              <p id="form-offre-label" className="text-[14px] font-semibold">Offre souhaitée</p>
+              <div role="radiogroup" aria-labelledby="form-offre-label" className="mt-2 flex flex-wrap gap-2">
+                {OFFERS.map((o) => {
+                  const sel = o.id === offer;
+                  return (
+                    <button
+                      key={o.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={sel}
+                      onClick={() => setOffer(o.id)}
+                      className={`rounded-full px-3.5 py-2 text-[13px] min-h-[44px] border ${
+                        sel ? "border-[2px] border-focus font-semibold" : "border-hairline text-ink/70"
+                      }`}
+                    >
+                      {o.id}
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="tnum text-[13px] text-ink/60 mt-2">{selected.nom} — {estimation}{selected.surDevis ? "" : " An1"}</p>
+            </div>
             <label className="grid gap-1 text-[14px] font-semibold">
               Nom de l&apos;école
               <input required name="ecole" value={ecole} onChange={(e) => setEcole(e.target.value)} autoComplete="organization" className="font-normal border border-hairline rounded-util px-4 min-h-[44px] bg-transparent" placeholder="École Al Manar, Casablanca" />
