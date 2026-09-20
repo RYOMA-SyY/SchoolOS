@@ -5,3 +5,5 @@ out/
 # local AI skill tooling, not part of the product
 ~/
 *.log
+# local-only brochure PDF output (private, never pushed)
+brochure/
