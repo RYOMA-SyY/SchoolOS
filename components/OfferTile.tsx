@@ -22,6 +22,11 @@ export function OfferTile({ offer, index }: { offer: Offer; index: number }) {
         <p className="tnum font-display font-semibold text-[34px] mt-4">{prix}</p>
         <p className={`text-[14px] mt-2 ${dark ? "text-white/60" : "text-muted"}`}>Cible : {offer.cible}</p>
         <p className={`tnum text-[14px] mt-1 font-semibold ${dark ? "text-white/85" : "text-ink/80"}`}>Mise en route : {offer.delai}</p>
+        {(offer.id === "O2" || offer.id === "O3" || offer.id === "O4") && (
+          <p className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-[#AF52DE] px-4 py-1.5 text-[13px] font-semibold text-[#AF52DE]">
+            <span aria-hidden>✨</span> IA emploi du temps incluse
+          </p>
+        )}
         <ul className="mt-8 text-left grid sm:grid-cols-2 gap-3 max-w-[760px] mx-auto">
           {offer.features.map((f) => (
             <li key={f} className={`flex items-start gap-2 text-[17px] ${dark ? "text-white/85" : "text-ink/85"}`}>

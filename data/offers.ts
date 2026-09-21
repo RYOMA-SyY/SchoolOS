@@ -51,6 +51,7 @@ export const OFFERS: Offer[] = [
       "Classes et niveaux",
       "Paiements (échéanciers, reçus, dettes)",
       "Emplois du temps sans conflits",
+      "IA emploi du temps (ajustements en langage naturel)",
       "Tableau de bord et rapports",
     ],
     tile: "parchment",
@@ -68,6 +69,7 @@ export const OFFERS: Offer[] = [
     features: [
       "Tout O2 inclus",
       "Site web public inclus",
+      "IA emploi du temps incluse",
       "Portail enseignant (EDT, listes)",
       "Appel numérique + saisie notes",
       "Devoirs et ressources",
@@ -134,7 +136,7 @@ export const COMPARISON: { label: string; O1: boolean; O2: boolean; O3: boolean;
   { label: "Portail élèves", O1: false, O2: false, O3: false, O4: true },
   { label: "Paiement en ligne", O1: false, O2: false, O3: false, O4: true },
   { label: "Notifications SMS", O1: false, O2: false, O3: false, O4: true },
-  { label: "IA emploi du temps", O1: false, O2: false, O3: false, O4: true },
+  { label: "IA emploi du temps", O1: false, O2: true, O3: true, O4: true },
 ];
 
 export const OPTIONS = [
