@@ -1,7 +1,7 @@
 const STEPS = [
   ["1", "Démonstration 30 min", "On cadre vos besoins et l'offre adaptée."],
   ["2", "Devis + signature", "50% commande, 50% livraison. Validité 30 jours."],
-  ["3", "Install 1–2 semaines", "Migration données + formation équipe + lancement."],
+  ["3", "Installation selon l'offre", "De 1 semaine (O1) à 4–6 semaines (O4), formation incluse."],
 ];
 
 export function Steps() {

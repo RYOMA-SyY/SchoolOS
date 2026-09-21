@@ -13,6 +13,7 @@ export type Offer = {
   tile: "light" | "parchment" | "dark-1";
   cta: string;
   cible: string;
+  delai: string;
 };
 
 export const OFFERS: Offer[] = [
@@ -34,6 +35,7 @@ export const OFFERS: Offer[] = [
     tile: "light",
     cta: "Demander O1",
     cible: "Directeurs voulant moderniser l'image",
+    delai: "1 semaine",
   },
   {
     id: "O2",
@@ -54,6 +56,7 @@ export const OFFERS: Offer[] = [
     tile: "parchment",
     cta: "Demander O2",
     cible: "Écoles 100–300 élèves, admin débordée",
+    delai: "2 semaines",
   },
   {
     id: "O3",
@@ -74,6 +77,7 @@ export const OFFERS: Offer[] = [
     tile: "dark-1",
     cta: "Demander O3",
     cible: "Écoles avec 10+ enseignants",
+    delai: "3 semaines",
   },
   {
     id: "O4",
@@ -94,6 +98,7 @@ export const OFFERS: Offer[] = [
     tile: "light",
     cta: "Demander O4",
     cible: "Grandes écoles / groupes 500+ élèves",
+    delai: "4 à 6 semaines",
   },
   {
     id: "O5",
@@ -114,6 +119,7 @@ export const OFFERS: Offer[] = [
     tile: "parchment",
     cta: "Contacter KenCo",
     cible: "Besoins spécifiques, groupes scolaires",
+    delai: "À définir ensemble",
   },
 ];
 

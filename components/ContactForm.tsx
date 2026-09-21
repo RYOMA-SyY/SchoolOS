@@ -37,6 +37,7 @@ export function ContactForm({ offer, setOffer, eleves, setEleves }: { offer: Off
           Email: email,
           Effectif: String(eleves),
           "Offre estimée": `${selected.id} — ${selected.nom}`,
+          "Délai de mise en route": selected.delai,
           "Estimation Année 1": estimation,
         }),
       });
