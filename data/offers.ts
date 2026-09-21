@@ -43,6 +43,7 @@ export const OFFERS: Offer[] = [
     mensuelParEleve: 20,
     exempleEleves: 200,
     features: [
+      "Site web public inclus",
       "Gestion élèves (profils, inscriptions, documents)",
       "Gestion enseignants (contrats, disponibilités)",
       "Classes et niveaux",
@@ -63,6 +64,7 @@ export const OFFERS: Offer[] = [
     exempleEleves: 200,
     features: [
       "Tout O2 inclus",
+      "Site web public inclus",
       "Portail enseignant (EDT, listes)",
       "Appel numérique + saisie notes",
       "Devoirs et ressources",
@@ -102,6 +104,7 @@ export const OFFERS: Offer[] = [
     surDevis: true,
     features: [
       "Audit de vos besoins avec KenCo",
+      "Site web public inclus",
       "Modules à la carte (choisis parmi O1–O4)",
       "Intégrations spécifiques (Massar, CMI, SMS local)",
       "Design aux couleurs de votre école",
@@ -115,7 +118,7 @@ export const OFFERS: Offer[] = [
 ];
 
 export const COMPARISON: { label: string; O1: boolean; O2: boolean; O3: boolean; O4: boolean }[] = [
-  { label: "Site web public", O1: true, O2: false, O3: false, O4: true },
+  { label: "Site web public", O1: true, O2: true, O3: true, O4: true },
   { label: "Gestion élèves", O1: false, O2: true, O3: true, O4: true },
   { label: "Gestion paiements", O1: false, O2: true, O3: true, O4: true },
   { label: "Emplois du temps", O1: false, O2: true, O3: true, O4: true },
