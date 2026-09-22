@@ -92,7 +92,6 @@ export const OFFERS: Offer[] = [
       "Tout O3 inclus",
       "Site web public inclus",
       "Portails parents + élèves",
-      "Paiement en ligne CMI / PayZone",
       "SMS / Email / Push",
       "IA ajustements EDT",
       "Analytics avancés + apps mobiles (Phase 2)",
@@ -113,7 +112,7 @@ export const OFFERS: Offer[] = [
       "Audit de vos besoins avec KenCo",
       "Site web public inclus",
       "Modules à la carte (choisis parmi O1–O4)",
-      "Intégrations spécifiques (Massar, CMI, SMS local)",
+      "Intégrations spécifiques (Massar, SMS local)",
       "Design aux couleurs de votre école",
       "Applications mobiles iOS / Android",
       "SLA et support dédié",
@@ -134,7 +133,6 @@ export const COMPARISON: { label: string; O1: boolean; O2: boolean; O3: boolean;
   { label: "Présence / Notes", O1: false, O2: false, O3: true, O4: true },
   { label: "Portail parents", O1: false, O2: false, O3: false, O4: true },
   { label: "Portail élèves", O1: false, O2: false, O3: false, O4: true },
-  { label: "Paiement en ligne", O1: false, O2: false, O3: false, O4: true },
   { label: "Notifications SMS", O1: false, O2: false, O3: false, O4: true },
   { label: "IA emploi du temps", O1: false, O2: true, O3: true, O4: true },
 ];
@@ -142,7 +140,6 @@ export const COMPARISON: { label: string; O1: boolean; O2: boolean; O3: boolean;
 export const OPTIONS = [
   { id: "sms", label: "SMS notifications", prix: "0,50 MAD / SMS" },
   { id: "email", label: "Email notifications", prix: "0,10 MAD / email" },
-  { id: "cmi", label: "Intégration CMI", prix: "5 000 MAD + 1% / transaction" },
   { id: "app", label: "App mobile iOS/Android", prix: "25 000 MAD" },
   { id: "formation", label: "Formation supplémentaire", prix: "1 500 MAD / session" },
   { id: "maintenance", label: "Maintenance prioritaire 24h", prix: "1 000 MAD / mois" },

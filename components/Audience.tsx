@@ -7,7 +7,7 @@ export function Audience() {
           {[
             ["Petites écoles 100–300", "O1→O2 : sortez d'Excel, sécurisez les paiements, sans gros projet."],
             ["Écoles en croissance 10+ profs", "O3 : appel et notes plus rapides que papier, remplacements gérés."],
-            ["Groupes 500+", "O4 : transparence parents, paiement en ligne, IA EDT. Argument d'inscription."],
+            ["Groupes 500+", "O4 : transparence parents, portails et IA EDT. Argument d'inscription."],
           ].map(([t, d]) => (
             <article key={t} className="bg-tile1 rounded-card p-6 border border-white/10">
               <h3 className="text-[17px] font-semibold">{t}</h3>
